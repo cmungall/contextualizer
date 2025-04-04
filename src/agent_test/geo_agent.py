@@ -109,7 +109,59 @@ async def fetch_map_image_and_interpret(lat: float, lon: float, zoom=18, maptype
     print("INTERPRETATION", r.data)
     return r.data
 
-result = geo_agent.run_sync('What is the temperature at 35.97583846 and long=-84.2743123')
-#result = geo_agent.run_sync('What features do you see at 35.97583846 and long=-84.2743123')
-#result = geo_agent.run_sync('How high is the location on earth with lat=35.97583846 and long=-84.2743123')
-#print(result.all_messages_json())  # type: ignore
+def get_location_description(lat: float, lon: float) -> str:
+    """
+    Get a comprehensive description of a location using the geo_agent.
+    
+    :param lat: Latitude coordinate
+    :param lon: Longitude coordinate
+    :return: Text description of the location
+    """
+    try:
+        # Get elevation information
+        elevation = get_elev(lat, lon)
+        
+        # Get map features with two different zoom levels
+        satellite_close = geo_agent.run_sync(
+            f'What features do you see at {lat} and long={lon} using satellite view with zoom=18?'
+        ).data
+        
+        satellite_far = geo_agent.run_sync(
+            f'What features do you see at {lat} and long={lon} using satellite view with zoom=13?'
+        ).data
+        
+        roadmap = geo_agent.run_sync(
+            f'What features do you see at {lat} and long={lon} using roadmap view with zoom=15?'
+        ).data
+        
+        # Try to get temperature information if available
+        try:
+            temperature = get_current_temperature(lat, lon)
+            temp_info = f"Current temperature: {temperature}°C. "
+        except Exception as e:
+            print(f"Could not get temperature: {e}")
+            temp_info = ""
+            
+        # Combine all information into a comprehensive description
+        description = (
+            f"Location coordinates: {lat}, {lon}. "
+            f"Elevation: {elevation}m. "
+            f"{temp_info}"
+            f"Satellite view (close): {satellite_close} "
+            f"Satellite view (far): {satellite_far} "
+            f"Roadmap view: {roadmap}"
+        )
+        
+        return description
+        
+    except Exception as e:
+        print(f"Error getting location description: {e}")
+        return f"Error analyzing location {lat}, {lon}: {str(e)}"
+
+
+# Example usage
+if __name__ == "__main__":
+    result = geo_agent.run_sync('What is the temperature at 35.97583846 and long=-84.2743123')
+    #result = geo_agent.run_sync('What features do you see at 35.97583846 and long=-84.2743123')
+    #result = geo_agent.run_sync('How high is the location on earth with lat=35.97583846 and long=-84.2743123')
+    #print(result.all_messages_json())  # type: ignore
