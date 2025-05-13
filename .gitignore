@@ -1,5 +1,6 @@
 .env
 .idea
+local/
 
 # Python-generated files
 __pycache__/

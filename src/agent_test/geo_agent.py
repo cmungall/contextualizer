@@ -56,7 +56,7 @@ geo_agent = Agent(
     Note that when interpreting images, you might want to try different zoom levels
     and switching between roadmap and satellite to get an overall sense of what is there.
     """,
-    allow_blocking_tool_use=True,  # Try to enable tool execution
+    # allow_blocking_tool_use=True,  # Try to enable tool execution
 )
 
 from meteostat import Point, Hourly

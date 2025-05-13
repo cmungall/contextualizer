@@ -96,7 +96,7 @@ if __name__ == "__main__":
         # Run the query through the agent
         logger.info("Running query through agent...")
         result = soil_agent.run_sync(query)
-        agent_response = result.output
+        agent_response = result.data
         logger.info(f"Agent response: {agent_response}")
 
         # Print the response

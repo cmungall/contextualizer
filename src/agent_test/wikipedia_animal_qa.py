@@ -214,20 +214,20 @@ def run_query(query: str) -> None:
             deps = ApiDeps(client=httpx.AsyncClient())
             result = wikipedia_api_agent.run_sync(query, deps=deps)
             print("\nAGENT RESPONSE:")
-            print(result.output)
+            print(result.data)
 
         # If the agent returned a tool call, extract the animal name and call directly
-        if "<|python_start|>" in result.output and "get_animal_info" in result.output:
+        if "<|python_start|>" in result.data and "get_animal_info" in result.data:
             print("\nThe agent suggested calling the tool but didn't execute it.")
             print("Attempting to extract animal name from the tool call...")
 
             # Very simple parsing of the tool call
-            start = result.output.find('animal_name="')
+            start = result.data.find('animal_name="')
             if start > -1:
                 start += len('animal_name="')
-                end = result.output.find('"', start)
+                end = result.data.find('"', start)
                 if end > -1:
-                    animal_name = result.output[start:end]
+                    animal_name = result.data[start:end]
                     print(f"Extracted animal name: {animal_name}")
 
                     # Call the synchronous version directly

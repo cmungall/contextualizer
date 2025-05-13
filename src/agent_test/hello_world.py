@@ -30,7 +30,11 @@ agent = Agent(
 if __name__ == "__main__":
     # Only run this code when file is executed directly
     result = agent.run_sync('Where does "hello world" come from?')
-    print(result.output)  # Using .output instead of .data
+    # print(result.output)  # Using .output instead of .data
+
+    # print(dir(result))
+
+    print(result.data)
 
     # Expected output:
     # The first known use of "hello, world" was in a 1974 textbook about the C programming language.
