@@ -7,8 +7,6 @@ from geopy.geocoders import Nominatim
 from nmdc_geoloc_tools import elevation as nmdc_elevation
 
 import urllib.parse
-import json
-
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
