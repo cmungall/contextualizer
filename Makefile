@@ -1,13 +1,13 @@
 .PHONY: hello elevation geo hello-world soil weather wiki test-agent test-minimal
 
-RUN_UV_PYTHON=.venv/bin/python
-RUN_UV_PYTEST=.venv/bin/pytest
+RUN_UV_PYTHON=uv run
+RUN_UV_PYTEST=uv run pytest
 
 all: hello elevation geo hello-world soil weather wiki test-agent test-minimal
 
 # Run the agent-test entry point, corresponding to src/agent_test/__init__.py
 hello:
-	.venv/bin/agent-test
+	$(RUN_UV_PYTHON) agent-test
 
 # Run elevation info script directly
 elevation:
@@ -43,5 +43,38 @@ test-agent:
 test-minimal:
 	$(RUN_UV_PYTEST) tests/test_minimal_agent.py -v
 
+local/nmdc-biosamples.json:
+	wget -O $@ 'https://api.microbiomedata.org/nmdcschema/biosample_set?max_page_size=99999'
 
 
+
+local/nmdc-latlon-inferred.json local/nmdc-latlon-summary.json: local/nmdc-biosamples.json
+	$(RUN_UV_PYTHON) src/make_nmdc_biosamples_location_inferences.py \
+		--input $< \
+		--add-inferred-latlon \
+		--add-inferred-elevation \
+		--random-n 130 \
+		--output local/nmdc-latlon-inferred.json \
+		--summary-output local/nmdc-latlon-summary.json
+		
+# Process biosamples with AI interpretation of map images (using both Google Maps & CBORG)
+local/nmdc-ai-map-enriched.json: local/nmdc-latlon-inferred.json
+	$(RUN_UV_PYTHON) src/biosample_map_interpreter.py \
+		--input $< \
+		--output $@ \
+		--max-samples 13 \
+		--map-types satellite,roadmap,terrain \
+		--zoom-levels 13,15,17
+
+# Compare asserted vs inferred environmental values using Claude Sonnet
+local/nmdc-comparison-summary.json local/nmdc-llm-comparison.json: local/nmdc-ai-map-enriched.json
+	$(RUN_UV_PYTHON) src/biosample_llm_comparator.py \
+		--input $< \
+		--output local/nmdc-llm-comparison.json \
+		--summary-output local/nmdc-comparison-summary.json \
+		--max-samples 13
+
+# Other map types available:
+# - hybrid: Combines satellite imagery with road labels
+# - terrain: Already added - shows topographical features
+# - Historical imagery: Available through Earth Engine APIs (separate service)

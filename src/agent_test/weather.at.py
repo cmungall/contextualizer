@@ -125,7 +125,7 @@ if __name__ == "__main__":
 
         # Print the result
         print("\nAGENT RESPONSE:")
-        print(result.output)  # Using .output instead of deprecated .data
+        print(result.data)  # Using .output instead of deprecated .data
 
         # Try direct function call as well
         print("\nDIRECT FUNCTION EXECUTION:")
