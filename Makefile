@@ -1,9 +1,9 @@
-.PHONY: hello elevation geo hello-world soil weather wiki test-agent test-minimal
+.PHONY: hello elevation geo hello-world soil weather wiki test-agent test-minimal test-soil
 
 RUN_UV_PYTHON=uv run
 RUN_UV_PYTEST=uv run pytest
 
-all: hello elevation geo hello-world soil weather wiki test-agent test-minimal
+all: hello elevation geo hello-world soil weather wiki test-agent test-minimal test-soil
 
 # Run the agent-test entry point, corresponding to src/agent_test/__init__.py
 hello:
@@ -42,6 +42,10 @@ test-agent:
 
 test-minimal:
 	$(RUN_UV_PYTEST) tests/test_minimal_agent.py -v
+
+# Run soil agent tests
+test-soil:
+	$(RUN_UV_PYTEST) tests/test_soil_agent.py -v
 
 local/nmdc-biosamples.json:
 	wget -O $@ 'https://api.microbiomedata.org/nmdcschema/biosample_set?max_page_size=99999'
