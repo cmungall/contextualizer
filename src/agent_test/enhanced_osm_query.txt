@@ -1,0 +1,34 @@
+# Enhanced query that includes relations and secondary tags
+OVERPASS_QUERY = """
+[out:json][timeout:180];
+(
+    // Primary environmental features
+    way["natural"](around:{radius},{lat},{lon});
+    way["waterway"](around:{radius},{lat},{lon});
+    way["water"](around:{radius},{lat},{lon});
+    way["landuse"](around:{radius},{lat},{lon});
+    
+    // Additional environmental contexts
+    way["leaf_type"](around:{radius},{lat},{lon});
+    way["leaf_cycle"](around:{radius},{lat},{lon});
+    way["natural"]["intermittent"](around:{radius},{lat},{lon});
+    way["water"]["tidal"](around:{radius},{lat},{lon});
+    
+    // Protected areas and their relations
+    rel["boundary"="protected_area"](around:{radius},{lat},{lon});
+    rel["leisure"="nature_reserve"](around:{radius},{lat},{lon});
+    
+    // Get all members of found relations
+    >>;
+    
+    // Get any parent relations
+    rel(br);
+);
+out body qt;
+"""
+
+# Test this query at Oak Ridge:
+echo $OVERPASS_QUERY | \
+    sed "s/{radius}/2000/g" | \
+    sed "s/{lat}/35.97583846/g" | \
+    sed "s/{lon}/-84.2743123/g" > oak_ridge_query.txt

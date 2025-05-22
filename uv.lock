@@ -21,6 +21,7 @@ name = "agent-test"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
+    { name = "click" },
     { name = "duckdb" },
     { name = "geopy" },
     { name = "meteostat" },
@@ -29,11 +30,13 @@ dependencies = [
     { name = "pydantic" },
     { name = "pydantic-ai" },
     { name = "pytest" },
+    { name = "requests" },
     { name = "soilgrids" },
 ]
 
 [package.metadata]
 requires-dist = [
+    { name = "click", specifier = ">=8.1.7" },
     { name = "duckdb", specifier = ">=0.9.2" },
     { name = "geopy", specifier = ">=2.4.1" },
     { name = "meteostat", specifier = ">=1.6.8" },
@@ -42,6 +45,7 @@ requires-dist = [
     { name = "pydantic", specifier = ">=2.0.0" },
     { name = "pydantic-ai", specifier = ">=0.0.42" },
     { name = "pytest", specifier = ">=8.3.5" },
+    { name = "requests", specifier = ">=2.31.0" },
     { name = "soilgrids", specifier = ">=0.1.4" },
 ]
 
