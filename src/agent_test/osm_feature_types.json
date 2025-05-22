@@ -1,0 +1,209 @@
+{
+    "natural": {
+        "description": "Natural features and landforms",
+        "values": {
+            "water_features": [
+                "water", "bay", "strait", "wetland", "spring", "hot_spring",
+                "geyser", "waterfall"
+            ],
+            "terrestrial_features": [
+                "wood", "tree", "grassland", "heath", "scrub", "tundra",
+                "glacier", "scree", "bare_rock", "rock", "stone", "sinkhole"
+            ],
+            "coastal_marine": [
+                "beach", "shoal", "reef", "shingle", "sand", "dune",
+                "mudflat", "tide_pool", "estuary"
+            ],
+            "landforms": [
+                "valley", "ridge", "arete", "cliff", "peak", "volcano",
+                "cave_entrance", "depression", "basin", "peninsula", "islet"
+            ]
+        }
+    },
+    
+    "landcover": {
+        "description": "Physical material covering the earth",
+        "values": {
+            "vegetation": [
+                "trees", "grass", "grassland", "shrubs", "meadow", "wetland",
+                "mangrove", "moss", "lichen", "bamboo"
+            ],
+            "bare_ground": [
+                "bare", "scree", "sand", "rock", "shingle", "mud"
+            ]
+        }
+    },
+    
+    "vegetation": {
+        "description": "Detailed vegetation classification",
+        "values": {
+            "forest_types": [
+                "wood", "forest", "rainforest", "mangrove", "broadleaved",
+                "needleleaved", "mixed", "temperate", "tropical"
+            ],
+            "other_vegetation": [
+                "grassland", "shrubland", "heath", "marsh", "reedbed",
+                "bog", "fen", "swamp", "riparian", "savanna"
+            ]
+        }
+    },
+    
+    "water": {
+        "description": "Water body types",
+        "values": {
+            "natural_water": [
+                "river", "lake", "stream", "pond", "lagoon", "oxbow",
+                "marsh", "spring", "hot_spring"
+            ],
+            "artificial_water": [
+                "reservoir", "canal", "basin", "wastewater", "fountain",
+                "water_well", "storage"
+            ],
+            "characteristics": [
+                "salt", "fresh", "tidal", "intermittent", "permanent",
+                "seasonal", "ephemeral"
+            ]
+        }
+    },
+    
+    "waterway": {
+        "description": "Linear water features",
+        "values": {
+            "natural": [
+                "river", "stream", "tidal_channel", "rapids", "waterfall",
+                "riverbank"
+            ],
+            "artificial": [
+                "canal", "drain", "ditch", "dock", "lock_gate", "weir"
+            ]
+        }
+    },
+    
+    "wetland": {
+        "description": "Types of wetland environments",
+        "values": {
+            "freshwater": [
+                "marsh", "swamp", "bog", "fen", "reedbed", "wet_meadow",
+                "string_bog", "raised_bog", "blanket_bog", "floating"
+            ],
+            "saltwater": [
+                "mangrove", "saltmarsh", "salt_flat", "tidal_flat"
+            ]
+        }
+    },
+    
+    "landuse": {
+        "description": "Land use with environmental relevance",
+        "values": {
+            "natural_managed": [
+                "forest", "meadow", "natural_reserve", "conservation",
+                "protected_area", "wilderness"
+            ],
+            "agricultural": [
+                "farmland", "orchard", "vineyard", "aquaculture",
+                "salt_pond", "greenhouse"
+            ],
+            "water_management": [
+                "basin", "reservoir", "water_storage"
+            ],
+            "extractive": [
+                "quarry", "mine", "pit", "borrow_pit"
+            ]
+        }
+    },
+    
+    "geological": {
+        "description": "Geological and soil features",
+        "values": {
+            "formations": [
+                "moraine", "outcrop", "paleontological_site", "volcanic",
+                "fault", "fold", "alluvial_fan"
+            ],
+            "rock_types": [
+                "limestone", "sandstone", "granite", "basalt", "gneiss",
+                "schist", "quartzite"
+            ],
+            "sediments": [
+                "mud", "clay", "silt", "sand", "gravel", "peat"
+            ]
+        }
+    },
+    
+    "soil": {
+        "description": "Soil types and characteristics",
+        "values": {
+            "basic_types": [
+                "sand", "clay", "silt", "peat", "loam", "chalk",
+                "limestone", "laterite", "mud", "rock"
+            ],
+            "characteristics": [
+                "organic", "mineral", "saline", "alkaline", "acidic",
+                "waterlogged", "well_drained"
+            ]
+        }
+    },
+
+    "ecosystem": {
+        "description": "Ecosystem and habitat types",
+        "values": {
+            "terrestrial": [
+                "forest", "grassland", "heath", "moor", "tundra",
+                "desert", "mountain"
+            ],
+            "aquatic": [
+                "wetland", "riparian", "coastal", "marine", "estuarine",
+                "freshwater"
+            ],
+            "transitional": [
+                "dune", "marsh", "mangrove", "intertidal", "supratidal"
+            ]
+        }
+    },
+    
+    "agriculture": {
+        "description": "Agricultural land use",
+        "values": {
+            "crop_types": [
+                "arable", "paddy", "greenhouse", "orchard", "vineyard",
+                "horticulture"
+            ],
+            "animal": [
+                "pasture", "grazing", "aquaculture", "livestock"
+            ],
+            "characteristics": [
+                "intensive", "extensive", "organic", "traditional",
+                "irrigated", "dryland"
+            ]
+        }
+    },
+    
+    "protected_area": {
+        "description": "Protected status and management",
+        "values": {
+            "designation": [
+                "national_park", "nature_reserve", "wilderness",
+                "protected_area", "conservation", "habitat",
+                "biosphere_reserve", "marine_protected"
+            ],
+            "management": [
+                "strict_nature_reserve", "wilderness_area",
+                "national_park", "natural_monument", "habitat_management",
+                "protected_landscape", "managed_resource"
+            ]
+        }
+    },
+    
+    "climate": {
+        "description": "Climate-related features",
+        "values": {
+            "zones": [
+                "tropical", "temperate", "boreal", "polar", "alpine",
+                "mediterranean", "desert", "subtropical"
+            ],
+            "characteristics": [
+                "humid", "arid", "semi_arid", "maritime", "continental",
+                "monsoon"
+            ]
+        }
+    }
+}
